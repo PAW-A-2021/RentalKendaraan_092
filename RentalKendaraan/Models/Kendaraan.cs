@@ -19,7 +19,6 @@ namespace RentalKendaraan.Models
         [Required(ErrorMessage = "Silahkan isi ketersediaan nya")]
         public string Ketersediaan { get; set; }
         public object IdJenisKendaraansNavigation { get; internal set; }
-        public object IdJenisKendaraanNavigation { get; internal set; }
         public ICollection<Peminjaman> Peminjaman { get; set; }
     }
 }

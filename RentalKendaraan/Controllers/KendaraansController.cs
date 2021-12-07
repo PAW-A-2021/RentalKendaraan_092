@@ -21,14 +21,14 @@ namespace RentalKendaraan.Controllers
         // GET: Kendaraans
         public async Task<IActionResult> Index(string ktsd, string searchString)
         {
-            var rentKendaraanContext = _context.Kendaraans.Include(k => k.IdJenisKendaraanNavigation);
+            var rentKendaraanContext = _context.Kendaraans.Include(k => k.IdJenisKendaraansNavigation);
             return View(await rentKendaraanContext.ToListAsync());
             var ktsdList = new List<string>();
             var ktsdQuery = from d in _context.Kendaraans orderby d.Ketersediaan select d.Ketersediaan;
 
             ktsdList.AddRange(ktsdQuery.Distinct());
             ViewBag.ktsd = new SelectList(ktsdList);
-            var menu = from m in _context.Kendaraans.Include(k => k.IdJenisKendaraanNavigation) select m;
+            var menu = from m in _context.Kendaraans.Include(k => k.IdJenisKendaraansNavigation) select m;
 
             if (!string.IsNullOrEmpty(ktsd))
             {
