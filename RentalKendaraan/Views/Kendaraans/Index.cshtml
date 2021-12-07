@@ -5,27 +5,34 @@
 }
 
 <h2>Index</h2>
+<a asp-action="Create">Create New</a>
 
+@using (Html.BeginForm("Index", "Kendaraan", FormMethod.Get))
+{
 <p>
-    <a asp-action="Create">Create New</a>
+    Ketersediaan: @Html.DropDownList("ktsd", "Pilih ketersediaan")
+    Cari Data: @Html.TextBox("searchString")
+    <input type="submit" value="Filter"/>
+    
 </p>
+}
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.NamaKendaraan)
+                @Html.DisplayName("Nama Kendaraan")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NoPolisi)
+                @Html.DisplayName("No Polisi")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NoStnk)
+                @Html.DisplayName("No STNK")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IdJenisKendaraan)
+                @Html.DisplayName("Id Jenis Kendaraan")
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Ketersediaan)
+                @Html.DisplayName("Ketersediaan")
             </th>
             <th></th>
         </tr>
@@ -49,9 +56,9 @@
                 @Html.DisplayFor(modelItem => item.Ketersediaan)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.IdKendaraan">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdKendaraan">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdKendaraan">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.IdKendaraan"><i class="fa fa-marker fa-lg"></i></a> |
+                <a asp-action="Details" asp-route-id="@item.IdKendaraan"><i class="fas fa-list"></i></a> |
+                <a asp-action="Delete" asp-route-id="@item.IdKendaraan"><i class="fa fa-trash-alt fa-lg"></i></a> |
             </td>
         </tr>
 }
