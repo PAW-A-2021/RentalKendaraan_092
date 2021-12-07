@@ -19,7 +19,7 @@ namespace RentalKendaraan.Models
         public virtual DbSet<Gender> Gender { get; set; }
         public virtual DbSet<Jaminan> Jaminan { get; set; }
         public virtual DbSet<JenisKendaraan> JenisKendaraan { get; set; }
-        public virtual DbSet<Kendaraan> Kendaraans { get; set; }
+        public virtual DbSet<Kendaraan> Kendaraan { get; set; }
         public virtual DbSet<KondisiKendaraan> KondisiKendaraan { get; set; }
         public virtual DbSet<Peminjaman> Peminjaman { get; set; }
         public virtual DbSet<Pengembalian> Pengembalian { get; set; }
@@ -27,6 +27,7 @@ namespace RentalKendaraan.Models
         public object Peminjamen { get; internal set; }
         public object Genders { get; internal set; }
         public object Jaminans { get; internal set; }
+        public object Kendaraans { get; internal set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

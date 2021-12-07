@@ -21,14 +21,12 @@ namespace RentalKendaraan.Controllers
         // GET: Kendaraans
         public async Task<IActionResult> Index(string ktsd, string searchString)
         {
-            var rentKendaraanContext = _context.Kendaraans.Include(k => k.IdJenisKendaraanNavigation);
-            return View(await rentKendaraanContext.ToListAsync());
             var ktsdList = new List<string>();
-            var ktsdQuery = from d in _context.Kendaraans orderby d.Ketersediaan select d.Ketersediaan;
+            var ktsdQuery = from d in _context.Kendaraan orderby d.Ketersediaan select d.Ketersediaan;
 
             ktsdList.AddRange(ktsdQuery.Distinct());
             ViewBag.ktsd = new SelectList(ktsdList);
-            var menu = from m in _context.Kendaraans.Include(k => k.IdJenisKendaraanNavigation) select m;
+            var menu = from m in _context.Kendaraan.Include(k => k.IdJenisKendaraanNavigation) select m;
 
             if (!string.IsNullOrEmpty(ktsd))
             {
@@ -51,7 +49,7 @@ namespace RentalKendaraan.Controllers
                 return NotFound();
             }
 
-            var kendaraan = await _context.Kendaraans
+            var kendaraan = await _context.Kendaraan
                 .Include(k => k.IdJenisKendaraanNavigation)
                 .FirstOrDefaultAsync(m => m.IdKendaraan == id);
             if (kendaraan == null)
@@ -95,7 +93,7 @@ namespace RentalKendaraan.Controllers
                 return NotFound();
             }
 
-            var kendaraan = await _context.Kendaraans.FindAsync(id);
+            var kendaraan = await _context.Kendaraan.FindAsync(id);
             if (kendaraan == null)
             {
                 return NotFound();
@@ -150,7 +148,7 @@ namespace RentalKendaraan.Controllers
                 return NotFound();
             }
 
-            var kendaraan = await _context.Kendaraans
+            var kendaraan = await _context.Kendaraan
                 .Include(k => k.IdJenisKendaraanNavigation)
                 .FirstOrDefaultAsync(m => m.IdKendaraan == id);
             if (kendaraan == null)
@@ -166,15 +164,15 @@ namespace RentalKendaraan.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var kendaraan = await _context.Kendaraans.FindAsync(id);
-            _context.Kendaraans.Remove(kendaraan);
+            var kendaraan = await _context.Kendaraan.FindAsync(id);
+            _context.Kendaraan.Remove(kendaraan);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool KendaraanExists(int id)
         {
-            return _context.Kendaraans.Any(e => e.IdKendaraan == id);
+            return _context.Kendaraan.Any(e => e.IdKendaraan == id);
         }
     }
 }
