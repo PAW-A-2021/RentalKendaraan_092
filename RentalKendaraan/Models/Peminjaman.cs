@@ -17,5 +17,9 @@ namespace RentalKendaraan.Models
         public int? IdJaminan { get; set; }
         [RegularExpression("^[0-9]*$", ErrorMessage = "Hanya boleh diisi oleh angka")]
         public int? Biaya { get; set; }
+        public object IdCustomerNavigation { get; internal set; }
+        public object IdJaminanNavigation { get; internal set; }
+        public object IdKendaraanNavigation { get; internal set; }
+        public ICollection<Peminjaman> Peminjamen { get; set; }
     }
 }

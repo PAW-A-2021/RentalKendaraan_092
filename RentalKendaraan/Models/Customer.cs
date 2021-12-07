@@ -19,7 +19,7 @@ namespace RentalKendaraan.Models
         public string NoHp { get; set; }
         [RegularExpression("^[0-9]*$", ErrorMessage = "Hanya boleh diisi oleh angka")]
         public int? IdGender { get; set; }
-
-
+        public object IdGenderNavigation { get; internal set; }
+        public ICollection<Customer> Customers { get; set; }
     }
 }
